@@ -1,0 +1,33 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "*": {
+        "eventType": "[&1].eventType",
+        "platform": "[&1].platform",
+        "updatedAttributes": {
+          "filename": "[&2].filename",
+          "kafka.offset": "[&2].offsets",
+          "kafka.partition": "[&2].partitions",
+          "kafka.topic": "[&2].topics"
+        },
+        "previousAttributes": {
+          "filename": "[&2].filename",
+          "kafka-offsets": "[&2].offsets",
+          "kafka-partitions": "[&2].partitions",
+          "kafka-topics": "[&2].topics"
+        }
+      }
+    }
+  },
+  {
+    "operation": "modify-overwrite-beta",
+    "spec": {
+      "*": {
+        "offsets": "=split(',',@(1,offsets))",
+        "partitions": "=split(',',@(1,partitions))",
+        "topics": "=split(',',@(1,topics))"
+      }
+    }
+  }
+]

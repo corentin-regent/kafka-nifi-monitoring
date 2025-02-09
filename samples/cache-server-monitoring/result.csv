@@ -1,0 +1,4 @@
+topic;partition;offset
+input-topic;0;2
+input-topic;0;0
+input-topic;0;1

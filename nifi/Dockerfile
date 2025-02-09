@@ -9,6 +9,7 @@ ENV NIFI_WEB_HTTPS_HOST=
 COPY ./core-site.xml /opt/hadoop/etc/core-site.xml
 COPY ./hdfs-site.xml /opt/hadoop/etc/hdfs-site.xml
 
+COPY ./jolt /app/jolt
 COPY ./scripts /app/scripts
 
 # NiFi Web UI

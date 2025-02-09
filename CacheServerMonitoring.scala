@@ -5,21 +5,21 @@ import java.nio.charset.StandardCharsets
 // Server response codes
 val DIFFERENT_RESOURCE_VERSION = 21
 
-// Operations, can be found here: https://github.com/apache/nifi/blob/main/nifi-extension-bundles/nifi-standard-services/nifi-distributed-cache-services-bundle/nifi-distributed-cache-protocol/src/main/java/org/apache/nifi/distributed/cache/operations/MapOperation.java
+// Operations, can be found here: https://github.com/apache/nifi/blob/6dee8dfae5a177bea06e2b71b8f303b462e8ac32/nifi-extension-bundles/nifi-standard-services/nifi-distributed-cache-services-bundle/nifi-distributed-cache-protocol/src/main/java/org/apache/nifi/distributed/cache/operations/MapOperation.java
 val CLOSE = "close"
 val KEY_SET = "keySet"
 
 val CACHE_SERVER_HOST = "nifi"
 val CACHE_SERVER_PORT = 4559
 
-object FetchProvenanceFromNifi extends App {
+object CacheServerMonitoring extends App {
   println("Opening a socket to the distributed map cache server")
   val socket = new Socket(CACHE_SERVER_HOST, CACHE_SERVER_PORT)
   try {
     val output = new DataOutputStream(socket.getOutputStream)
     val input = new DataInputStream(socket.getInputStream)
 
-    // Supported versions can be found here: https://github.com/apache/nifi/blob/main/nifi-extension-bundles/nifi-standard-services/nifi-distributed-cache-services-bundle/nifi-distributed-cache-protocol/src/main/java/org/apache/nifi/distributed/cache/protocol/ProtocolVersion.java
+    // Supported versions can be found here: https://github.com/apache/nifi/blob/6dee8dfae5a177bea06e2b71b8f303b462e8ac32/nifi-extension-bundles/nifi-standard-services/nifi-distributed-cache-services-bundle/nifi-distributed-cache-protocol/src/main/java/org/apache/nifi/distributed/cache/protocol/ProtocolVersion.java
     println("Negotiating handshake/version")
     var protocolVersion = 3
     output.write("NiFi".getBytes(StandardCharsets.UTF_8))
