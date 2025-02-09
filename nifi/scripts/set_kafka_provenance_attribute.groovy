@@ -8,7 +8,7 @@ for (flowFile in flowFiles) {
     def partition = flowFile.getAttribute('kafka.partition')
     def offset = flowFile.getAttribute('kafka.offset')
 
-    session.putAttribute(flowFile, "kafka-provenance-$topic-$partition-$offset", DUMMY_VALUE)
+    session.putAttribute(flowFile, "kafka-provenance/$topic/$partition/$offset", DUMMY_VALUE)
 
     session.transfer(flowFile, REL_SUCCESS)
 }
