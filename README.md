@@ -20,7 +20,9 @@ It appears that consuming and parsing the Kafka messages in a single step (with 
 
 Additionally, one wants to set a truly unique filename for each FlowFile, as two messages can be processed within a second. Therefore, if we use solely the current time, then the therefore conflict. The FlowFile's `${UUID()}` is a strong candidate.
 
-Finally, one should make sure that the write to HDFS is idempotent. Indeed, it may succeed on HDFS's side, but the acknowledgement is not atomic, therefore it may not be processed by NiFi before a cluster restart occurs, causing the write to happen once more. A solution is to use `ignore` as a `Conflict Resolution Strategy`, as a conflict implies that the file was written already. Using `Write and rename` as a `Writing Strategy` ensures that the file is only placed at the correct position once it is fully written, thus preventing partial writes in case of failure.
+Then, one should make sure that the write to HDFS is idempotent. Indeed, it may succeed on HDFS's side, but the acknowledgement is not atomic, therefore it may not be processed by NiFi before a cluster restart occurs, causing the write to happen once more. A solution is to use `ignore` as a `Conflict Resolution Strategy`, as a conflict implies that the file was written already. Using `Write and rename` as a `Writing Strategy` ensures that the file is only placed at the correct position once it is fully written, thus preventing partial writes in case of failure.
+
+Finally, one should use `Yield` as a `Retry Back Off Policy` in case writing to HDFS failed (e.g. the cluster is temporarily available). This will prioritize retrying the processing of the failed FlowFiles, over handling other incoming FlowFiles, thus guaranteeing in-order delivery **for the messages originating from the same Kafka partition**.
 
 ## Trading at-least-once for at-most-once
 
