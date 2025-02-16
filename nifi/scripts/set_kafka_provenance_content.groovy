@@ -1,12 +1,12 @@
 def BATCH_SIZE = 100
-def KAFKA_PROVENANCE_PATTERN = ~/^kafka-provenance\/([^\/]+)\/(\d+)\/(\d+)$/
+def KAFKA_PROVENANCE_PATTERN = ~/^kafka-provenance-([^\/]+)\/(\d+)\/(\d+)/
 
 def stringBuilder = new StringBuilder()
 def flowFiles = session.get(BATCH_SIZE)
 
 for (flowFile in flowFiles) {
     stringBuilder.setLength(0)  // Reset
-    stringBuilder.append("topic;partition;offset;filename\n")
+    stringBuilder.append('topic;partition;offset;filename\n')
     def filename = flowFile.getAttribute('filename')
 
     for (entry in flowFile.attributes) {

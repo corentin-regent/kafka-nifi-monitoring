@@ -7,8 +7,9 @@ for (flowFile in flowFiles) {
     def topic = flowFile.getAttribute('kafka.topic')
     def partition = flowFile.getAttribute('kafka.partition')
     def offset = flowFile.getAttribute('kafka.offset')
+    def uuid = UUID.randomUUID()
 
-    session.putAttribute(flowFile, "kafka-provenance/$topic/$partition/$offset", DUMMY_VALUE)
+    session.putAttribute(flowFile, "kafka-provenance-$topic/$partition/$offset-$uuid", DUMMY_VALUE)
 
     session.transfer(flowFile, REL_SUCCESS)
 }

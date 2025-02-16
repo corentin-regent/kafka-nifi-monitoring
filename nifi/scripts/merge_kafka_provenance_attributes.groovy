@@ -1,5 +1,5 @@
 def BATCH_SIZE = 100
-def KAFKA_PROVENANCE_PATTERN = ~/^kafka-provenance\/([^\/]+)\/(\d+)\/(\d+)$/
+def KAFKA_PROVENANCE_PATTERN = ~/^kafka-provenance-([^\/]+)\/(\d+)\/(\d+)/
 
 def topics = []
 def partitions = []
@@ -21,9 +21,9 @@ for (flowFile in flowFiles) {
         }
     }
 
-    session.putAttribute(flowFile, "kafka-topics", topics.join(','))
-    session.putAttribute(flowFile, "kafka-partitions", partitions.join(','))
-    session.putAttribute(flowFile, "kafka-offsets", offsets.join(','))
+    session.putAttribute(flowFile, 'kafka-topics', topics.join(','))
+    session.putAttribute(flowFile, 'kafka-partitions', partitions.join(','))
+    session.putAttribute(flowFile, 'kafka-offsets', offsets.join(','))
 
     session.transfer(flowFile, REL_SUCCESS)
 }
