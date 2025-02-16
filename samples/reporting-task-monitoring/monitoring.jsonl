@@ -1,4 +1,4 @@
 {"eventType":"RECEIVE","platform":"my-test-ingestion","filename":"46486746-7d28-400c-bcfc-dc499bb19ec7","offsets":["0"],"partitions":["0"],"topics":["input-topic"]}
 {"eventType":"RECEIVE","platform":"my-test-ingestion","filename":"2777e7a7-b2c8-4724-9762-fc0699654e41","offsets":["1"],"partitions":["0"],"topics":["input-topic"]}
 {"eventType":"RECEIVE","platform":"my-test-ingestion","filename":"3db12d88-2bd3-4b42-a16b-85a3400a8881","offsets":["2"],"partitions":["0"],"topics":["input-topic"]}
-{"eventType":"SEND","platform":"my-test-ingestion","filename":"20250209084610-6d41ce0e-db85-4189-afa0-38cc6e5276b0.jsonl","offsets":["2","1"],"partitions":["0","0"],"topics":["input-topic","input-topic"]}
+{"eventType":"DROP","platform":"my-test-ingestion","filename":"20250209084610-6d41ce0e-db85-4189-afa0-38cc6e5276b0.jsonl","offsets":["2","1"],"partitions":["0","0"],"topics":["input-topic","input-topic"]}

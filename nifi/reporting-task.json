@@ -4,7 +4,7 @@
   "Instance URL": "http://${hostname(true)}:8080/nifi",
   "Transport Protocol": "HTTP",
   "Platform": "my-test-ingestion",
-  "Event Type to Include": "RECEIVE,SEND",
-  "Component ID to Include": "[your-ConsumeKafka-id],[your-PutHDFS-id]",
+  "Event Type to Include": "RECEIVE,DROP",
+  "Component ID to Include": "your-ConsumeKafka-id,your-PutHDFS-id",
   "Start Position": "Beginning of Stream"
 }

@@ -3,7 +3,6 @@
     "operation": "shift",
     "spec": {
       "*": {
-        "eventOrdinal": "[&1].eventOrdinal",
         "eventType": "[&1].eventType",
         "platform": "[&1].platform",
         "updatedAttributes": {
